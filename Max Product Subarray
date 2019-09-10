@@ -1,0 +1,16 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int maxProduct(final List<Integer> A) {
+        int maxIndex[]=new int[A.size()];
+        int minIndex[]=new int[A.size()];
+        maxIndex[0]=A.get(0);
+        minIndex[0]=A.get(0);
+        int global=A.get(0);
+        for(int i=1;i<A.size();i++){
+            maxIndex[i]=Math.max(A.get(i),Math.max(maxIndex[i-1]*A.get(i),minIndex[i-1]*A.get(i)));
+            global=Math.max(global,maxIndex[i]);
+            minIndex[i]=Math.min(A.get(i),Math.min(maxIndex[i-1]*A.get(i),minIndex[i-1]*A.get(i)));
+        }
+        return global;
+    }
+}
